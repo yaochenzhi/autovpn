@@ -59,7 +59,7 @@ func main() {
 
 						fmt.Printf("[autovpn] running openvpn\n")
 
-						cmd := exec.Command("sudo", "openvpn", "/tmp/openvpnconf")
+						cmd := exec.Command("sudo", "openvpn", "--config", "/tmp/openvpnconf", "--pull-filter", "ignore", "redirect-gateway", "--script-security", "2", "--up", "/usr/local/bin/up.sh")
 						cmd.Stdout = os.Stdout
 
 						c := make(chan os.Signal, 2)
